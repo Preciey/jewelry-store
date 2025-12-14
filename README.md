@@ -1,59 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+````markdown
+# Mimie Jewellery E-commerce Application
 
-## About Laravel
+Mimie Jewellery is a modern full-stack e-commerce web application built with **Laravel 12** and **Vue 3**. It provides a complete shopping experience, allowing users to browse products by category, view product details, manage a shopping cart, and proceed through a checkout flow with delivery information.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Dynamic Product Listings:** Browse products by category or view featured items on the homepage.  
+- **Product Details:** Each product has a dedicated page showing price, old price, stock status, category, and description.  
+- **Shopping Cart:** Add, remove, or update product quantities with live cart updates.  
+- **Checkout Page:** Collect delivery details and proceed to payment.  
+- **Responsive Design:** Optimized for mobile, tablet, and desktop.  
+- **State Management:** Uses **Pinia** for managing cart and product state.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Tech Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend:** Laravel 12  
+- **Frontend:** Vue 3, Vue Router, Pinia  
+- **Database:** MySQL  
+- **Styling:** Tailwind CSS via CDN  
+- **Development Tools:** Vite, Node.js, npm
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installation
 
-### Premium Partners
+1. **Clone the repository:**  
+   ```bash
+   git clone https://github.com/your-username/mimie-jewellery.git
+   cd mimie-jewellery
+````
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2. **Install PHP dependencies:**
+
+   ```bash
+   composer install
+   ```
+
+3. **Install Node.js dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+4. **Configure environment variables:**
+   Copy `.env.example` to `.env` and update the database credentials.
+
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+5. **Run migrations and seed the database:**
+
+   ```bash
+   php artisan migrate --seed
+   ```
+
+6. **Run the application:**
+
+   ```bash
+   php artisan serve
+   npm run dev
+   ```
+
+7. Open your browser at `http://127.0.0.1:8000`.
+
+---
+
+## Project Structure
+
+```
+resources/
+├─ js/
+│  ├─ components/     # Reusable Vue components
+│  ├─ views/          # Page-level Vue components (Home, ProductDetails, Cart, Checkout)
+│  ├─ stores/         # Pinia stores for products and cart
+│  └─ App.vue
+├─ css/
+│  └─ app.css
+routes/
+├─ web.php            # Laravel web routes
+database/
+├─ migrations/
+├─ seeders/           # ProductSeeder for initial product data
+```
+
+---
+
+## Usage
+
+1. Visit the **Home page** to browse featured products.
+2. Click on a product to view detailed information.
+3. Add items to the **cart** from the product details page.
+4. Navigate to the **Cart page** to adjust quantities or remove items.
+5. Proceed to **Checkout**, fill in delivery details, and simulate payment.
+
+---
+
+## Screenshots
+
+*(You can add screenshots of the Home page, Product Details page, Cart, and Checkout page here)*
+
+---
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Contributions are welcome!
 
-## Code of Conduct
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m "Add new feature"`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the **MIT License**.
+
+---
+
+## Contact
+
+* **Project Owner:** Preciey Rathabane
+* **Email:** [your-email@example.com](mailto:your-email@example.com)
+* **GitHub:** [https://github.com/your-username](https://github.com/your-username)
+
+```
+
+This version is complete, professional, and ready for GitHub.  
+
+I can also **add badges** for Laravel, Vue, MySQL, and License to make it visually appealing. Do you want me to do that?
+```
