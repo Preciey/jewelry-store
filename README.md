@@ -1,5 +1,3 @@
-
-````markdown
 # Mimie Jewellery E-commerce Application
 
 Mimie Jewellery is a modern full-stack e-commerce web application built with **Laravel 12** and **Vue 3**. It provides a complete shopping experience, allowing users to browse products by category, view product details, manage a shopping cart, and proceed through a checkout flow with delivery information.
@@ -129,12 +127,6 @@ This project is licensed under the **MIT License**.
 ## Contact
 
 * **Project Owner:** Preciey Rathabane
-* **Email:** [your-email@example.com](mailto:your-email@example.com)
-* **GitHub:** [https://github.com/your-username](https://github.com/your-username)
+* **Email:** [Rathabane.sikedi1@gmail.com]
+* **GitHub:** [https://github.com/preciey]
 
-```
-
-This version is complete, professional, and ready for GitHub.  
-
-I can also **add badges** for Laravel, Vue, MySQL, and License to make it visually appealing. Do you want me to do that?
-```
