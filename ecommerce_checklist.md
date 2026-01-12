@@ -26,7 +26,7 @@
 - Increase / decrease quantity ✅
 - Remove item ✅
 - Cart total price & item count ✅
-- Persist cart after page refresh ❌
+- Persist cart after page refresh ✅
 
 ### Checkout
 - Display cart items in checkout ✅
