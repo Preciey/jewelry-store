@@ -7,13 +7,19 @@
     </div>
 
     <div v-else class="space-y-8">
-      <!-- Cart Summary -->
+      <!-- Order Summary -->
       <div>
         <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
-        <div v-for="item in cart.items" :key="item.slug" class="flex justify-between items-center p-4 border rounded-lg mb-2">
+
+        <div
+          v-for="item in cart.items"
+          :key="item.slug"
+          class="flex justify-between items-center p-4 border rounded-lg mb-2"
+        >
           <p>{{ item.name }} x {{ item.quantity }}</p>
           <p>${{ (item.price * item.quantity).toFixed(2) }}</p>
         </div>
+
         <div class="text-right mt-4 font-bold text-xl">
           Total: ${{ cart.totalPrice.toFixed(2) }}
         </div>
@@ -22,35 +28,24 @@
       <!-- Delivery Details -->
       <div>
         <h2 class="text-2xl font-bold mb-4">Delivery Details</h2>
-        <form @submit.prevent="payNow" class="space-y-4">
-          <div>
-            <label class="block font-medium">Full Name</label>
-            <input v-model="delivery.name" type="text" required class="w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label class="block font-medium">Address</label>
-            <input v-model="delivery.address" type="text" required class="w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label class="block font-medium">City</label>
-            <input v-model="delivery.city" type="text" required class="w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label class="block font-medium">Postal Code</label>
-            <input v-model="delivery.postalCode" type="text" required class="w-full border rounded px-3 py-2" />
-          </div>
-          <div>
-            <label class="block font-medium">Phone Number</label>
-            <input v-model="delivery.phone" type="tel" required class="w-full border rounded px-3 py-2" />
-          </div>
 
-          <button
-            type="submit"
-            class="mt-4 w-full px-6 py-2 bg-pink-700 text-white rounded hover:bg-pink-800"
-          >
-            Pay Now
-          </button>
-        </form>
+        <form class="space-y-4">
+  <input v-model="delivery.name" type="text" placeholder="Full Name" required class="input" />
+  <input v-model="delivery.email" type="email" placeholder="Email Address" required class="input" />
+  <input v-model="delivery.address" type="text" placeholder="Street Address" required class="input" />
+  <input v-model="delivery.city" type="text" placeholder="City" required class="input" />
+  <input v-model="delivery.postalCode" type="text" placeholder="Postal Code" required class="input" />
+  <input v-model="delivery.phone" type="tel" placeholder="Phone Number" required class="input" />
+
+  <button
+    type="button"
+    @click="payNow"
+    class="w-full mt-4 px-6 py-3 bg-pink-700 text-white rounded hover:bg-pink-800"
+  >
+    Pay Now
+  </button>
+</form>
+
       </div>
     </div>
   </div>
@@ -59,34 +54,62 @@
 <script>
 import { reactive } from "vue";
 import { useCartStore } from "../stores/cart";
-import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const cart = useCartStore();
-    const router = useRouter();
 
     const delivery = reactive({
       name: "",
+      email: "",
       address: "",
       city: "",
       postalCode: "",
       phone: "",
     });
 
-    const payNow = () => {
+    const payNow = async () => {
+
       if (!cart.items.length) return;
-      console.log("Order details:", {
-        items: cart.items,
-        delivery: delivery,
-        total: cart.totalPrice,
+
+      const response = await fetch("/payfast/initiate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: delivery.name,
+          email: delivery.email,
+          amount: cart.totalPrice.toFixed(2),
+        }),
       });
-      alert(`Thank you ${delivery.name}! Proceeding to payment of $${cart.totalPrice.toFixed(2)}`);
-      cart.clearCart();
-      router.push("/thank-you"); // optional thank-you page
+
+      const { url, data } = await response.json();
+
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = url;
+
+      Object.entries(data).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
     };
 
     return { cart, delivery, payNow };
   },
 };
 </script>
+
+<style scoped>
+.input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+</style>

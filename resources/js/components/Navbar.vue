@@ -1,33 +1,65 @@
 <template>
-  <nav class="bg-black text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <router-link to="/" class="font-bold text-lg">Mimie Jewellery</router-link>
-      <div class="space-x-4 flex items-center">
-        <router-link to="/products" class="hover:text-pink-500">Shop</router-link>
-        <router-link to="/about" class="hover:text-pink-500">About</router-link>
-        <router-link to="/contact" class="hover:text-pink-500">Contact</router-link>
+  <header class="w-full border-b border-gray-200 bg-white">
+    <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
 
-        <router-link to="/cart" class="relative px-4 py-2 hover:text-pink-700">
-          Cart
-          <span v-if="cartCount > 0" class="absolute -top-2 -right-2 bg-pink-700 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-            {{ cartCount }}
+      <!-- LEFT LINKS -->
+      <div class="hidden md:flex items-center space-x-8 text-sm">
+        <router-link to="/" class="nav-link">Home</router-link>
+        <router-link to="/products" class="nav-link">Shop</router-link>
+        <router-link to="/about" class="nav-link">About</router-link>
+      </div>
+
+      <!-- LOGO -->
+      <router-link
+        to="/"
+        class="text-2xl font-serif tracking-wide text-black"
+      >
+        mimie<span class="opacity-60">.</span>
+      </router-link>
+
+      <!-- RIGHT ICONS -->
+      <div class="flex items-center space-x-6">
+
+        <!-- Search (optional) -->
+        <button class="hidden md:block hover:opacity-70 transition">
+          🔍
+        </button>
+
+        <!-- Account -->
+        <router-link to="/account" class="hover:opacity-70 transition">
+          👤
+        </router-link>
+
+        <!-- Cart -->
+        <router-link to="/cart" class="relative hover:opacity-70 transition">
+          👜
+          <span
+            class="absolute -top-2 -right-3 bg-black text-white text-[10px] px-1.5 rounded-full"
+          >
+            2
           </span>
         </router-link>
+
+        <!-- Mobile Menu Button -->
+        <button
+          @click="open = !open"
+          class="md:hidden text-xl"
+        >
+          ☰
+        </button>
       </div>
-    </div>
-  </nav>
+
+    </nav>
+
+    <!-- MOBILE MENU -->
+  
+  </header>
 </template>
 
-<script>
-import { computed } from 'vue';
-import { useCartStore } from '../stores/cart';
+<script setup>
+import { ref } from 'vue'
 
-export default {
-  setup() {
-    const cart = useCartStore();
-    const cartCount = computed(() => cart.totalItems);
-
-    return { cartCount };
-  }
-}
+const open = ref(false)
 </script>
+
+
