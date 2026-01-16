@@ -22,7 +22,7 @@
                         Crafted to be both minimal and meaningful, our bracelets are more than accessories
                     </p>
 
-                    <button class="btn-dark">BUY NOW</button>
+                    <button class="btn-dark bg-orange-300 hover:bg-orange-400 rounded-md p-3">BUY NOW</button>
                 </div>
 
                 <img src="/public/Images/harper-sunday-half.jpg" class="rounded-xl mt-10" alt="Bracelets" />
@@ -37,7 +37,7 @@
                         <p class="text-gray-600 mb-5 max-w-sm">
                             Discover the timeless allure of our curated perfume collection.
                         </p>
-                        <button class="btn-dark">BUY NOW</button>
+                        <button class="btn-dark bg-slate-300 hover:bg-slate-400 rounded-md p-3">BUY NOW</button>
                     </div>
 
                     <img src="/public/Images/harper-sunday-half.jpg" class="w-40" alt="Perfume" />
@@ -49,7 +49,7 @@
                         <p class="text-gray-600 mb-5 max-w-sm">
                             Elevate your look with subtle elegance and everyday wearability.
                         </p>
-                        <button class="btn-dark">BUY NOW</button>
+                        <button class="btn-dark bg-slate-300 hover:bg-slate-400 rounded-md p-3">BUY NOW</button>
                     </div>
 
                     <img src="/public/Images/harper-sunday-half.jpg" class="w-40 rounded-xl" alt="Necklace" />
@@ -77,7 +77,7 @@
         </section>
 
         <!-- PROMO -->
-        <section class="bg-white py-24 px-6">
+        <section class="bg-white py-24 px-6 bg-gray-200">
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-12">
 
                 <div>
@@ -86,124 +86,115 @@
                         limited time offer!
                     </h2>
 
+                    <!-- TIMER -->
                     <div class="flex gap-3 mb-8">
-                        <div v-for="unit in ['DAYS', 'HOURS', 'MINUTES', 'SECONDS']" :key="unit"
-                            class="border px-5 py-4 text-sm">
-                            {{ unit }}
+                        <div class="border-2 border-slate-400 rounded-md px-3 py-3 text-center">
+                            <p class="text-xl font-semibold">{{ time.days }}</p>
+                            <span class="text-xs tracking-widest">DAYS</span>
+                        </div>
+
+                        <div class="border-2 border-slate-400 rounded-md px-3 py-3 text-center">
+                            <p class="text-xl font-semibold">{{ time.hours }}</p>
+                            <span class="text-xs tracking-widest">HOURS</span>
+                        </div>
+
+                        <div class="border-2 border-slate-400 rounded-md px-3 py-3 text-center">
+                            <p class="text-xl font-semibold">{{ time.minutes }}</p>
+                            <span class="text-xs tracking-widest">MINUTES</span>
+                        </div>
+
+                        <div class="border-2 border-slate-400 rounded-md px-3 py-3 text-center">
+                            <p class="text-xl font-semibold">{{ time.seconds }}</p>
+                            <span class="text-xs tracking-widest">SECONDS</span>
                         </div>
                     </div>
 
-                    <button class="btn-dark">BUY NOW</button>
+                    <button class="btn-dark bg-black hover:bg-slate-400 text-white rounded-md p-3 ">BUY NOW</button>
                 </div>
 
-                    <img src="/public/Images/harper-sunday-half.jpg" class="w-40 rounded-xl" alt="Necklace" />
+                <img src="/public/Images/harper-sunday-half.jpg" class="w-40 rounded-xl" alt="Necklace" />
+
             </div>
+        </section>
+        <section class="bg-white py-16 px-6 ">
 
             <!-- FEATURES -->
-            <div class="grid md:grid-cols-4 gap-10 text-center mt-20">
-                <div>
-                    <div class="text-3xl mb-3">🚚</div>
-                    <h4 class="font-medium">Free Shipping</h4>
-                    <p class="text-sm text-gray-600">Orders over R400</p>
-                </div>
+         <div class="grid md:grid-cols-4 gap-10 text-center">
 
-                <div>
-                    <div class="text-3xl mb-3">🎧</div>
-                    <h4 class="font-medium">Online Support</h4>
-                    <p class="text-sm text-gray-600">24/7 Support</p>
-                </div>
+  <div>
+    <div class="flex justify-center mb-3">
+      <img src="/public/Images/shipping.png" class="w-8" alt="shipping" />
+    </div>
+    <h4 class="font-medium">Free Shipping</h4>
+    <p class="text-sm text-gray-600">Free shipping on orders > R450</p>
+  </div>
 
-                <div>
-                    <div class="text-3xl mb-3">✔️</div>
-                    <h4 class="font-medium">Purchase Confidence</h4>
-                    <p class="text-sm text-gray-600">Quality you can trust</p>
-                </div>
+  <div>
+    <div class="flex justify-center mb-3">
+      <img src="/public/Images/support.png" class="w-8" alt="support" />
+    </div>
+    <h4 class="font-medium">Online Support</h4>
+    <p class="text-sm text-gray-600">Contact us 24 hours, 7 days</p>
+  </div>
 
-                <div>
-                    <div class="text-3xl mb-3">🔒</div>
-                    <h4 class="font-medium">Secure Payment</h4>
-                    <p class="text-sm text-gray-600">Protected checkout</p>
-                </div>
-            </div>
+  <div>
+    <div class="flex justify-center mb-3">
+      <img src="/public/Images/money-guarantee.png" class="w-8" alt="money-guarantee" />
+    </div>
+    <h4 class="font-medium">Purchase Confidence</h4>
+    <p class="text-sm text-gray-600">Quality you can trust</p>
+  </div>
+
+  <div>
+    <div class="flex justify-center mb-3">
+      <img src="/public/Images/wallet.png" class="w-8" alt="wallet" />
+    </div>
+    <h4 class="font-medium">Secure Payment</h4>
+    <p class="text-sm text-gray-600">We ensure secure payment</p>
+  </div>
+
+</div>
+
         </section>
     </div>
 </template>
 
-<script>
-export default {
-    name: "Home",
-    data() {
-        return {
-            categories: [
-                {
-                    name: "Necklaces",
-                    image: "https://via.placeholder.com/400x400",
-                    link: "/category/necklace",
-                },
-                {
-                    name: "Bracelets",
-                    image: "https://via.placeholder.com/400x400",
-                    link: "/category/bracelet",
-                },
-                {
-                    name: "Earrings",
-                    image: "https://via.placeholder.com/400x400",
-                    link: "/category/earring",
-                },
-                {
-                    name: "Rings",
-                    image: "https://via.placeholder.com/400x400",
-                    link: "/category/ring",
-                },
-                {
-                    name: "Anklets",
-                    image: "https://via.placeholder.com/400x400",
-                    link: "/category/anklet",
-                },
-                {
-                    name: "Accessories",
-                    image: "https://via.placeholder.com/400x400",
-                    link: "/category/accessory",
-                },
-            ],
-            products: [
-                {
-                    id: 1,
-                    name: "Pearl Necklace",
-                    slug: "pearl-necklace",
-                    price: 50,
-                    old_price: 75,
-                    image: "https://via.placeholder.com/300x300",
-                    category: "necklace",
-                },
-                {
-                    id: 2,
-                    name: "Bee Pendant Necklace",
-                    slug: "bee-necklace",
-                    price: 50,
-                    old_price: 60,
-                    image: "https://via.placeholder.com/300x300",
-                    category: "necklace",
-                },
-                {
-                    id: 3,
-                    name: "Star Choker",
-                    slug: "star-choker",
-                    price: 40,
-                    image: "https://via.placeholder.com/300x300",
-                    category: "necklace",
-                },
-                {
-                    id: 4,
-                    name: "Gold Earrings",
-                    slug: "gold-earrings",
-                    price: 30,
-                    old_price: 50,
-                    image: "https://via.placeholder.com/300x300",
-                    category: "earring",
-                },
-            ],
-        };
-    },
-};
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+// SET YOUR END DATE HERE
+const endDate = new Date('2026-02-01T23:59:59')
+
+const time = ref({
+    days: '00',
+    hours: '00',
+    minutes: '00',
+    seconds: '00',
+})
+
+let timerInterval = null
+
+const updateTimer = () => {
+    const now = new Date()
+    const diff = endDate - now
+
+    if (diff <= 0) {
+        clearInterval(timerInterval)
+        return
+    }
+
+    time.value.days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0')
+    time.value.hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0')
+    time.value.minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0')
+    time.value.seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0')
+}
+
+onMounted(() => {
+    updateTimer()
+    timerInterval = setInterval(updateTimer, 1000)
+})
+
+onUnmounted(() => {
+    clearInterval(timerInterval)
+})
 </script>

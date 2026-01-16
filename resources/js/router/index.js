@@ -8,6 +8,7 @@ import ProductDetails from "../views/ProductDetails.vue";
 import Cart from "../views/Cart.vue";
 import Payment from "../views/Payment.vue";
 import NotFound from "../views/NotFound.vue";
+import ContactUs from "../components/ContactUs.vue";
 
 const routes = [
     {
@@ -46,6 +47,11 @@ const routes = [
         path: "/:pathMatch(.*)*", // Catch all unmatched routes
         name: "NotFound",
         component: NotFound,
+    },
+        {
+        path: "/contact",
+        name: "contact",
+        component: ContactUs
     },
 ];
 
