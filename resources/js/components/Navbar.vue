@@ -1,5 +1,5 @@
 <template>
-    <header class="w-full border-b border-gray-200 ">
+    <header class="w-full border-b border-gray-200 relative">
 
         <!-- MESSAGE BAR -->
         <div class="bg-black text-white text-xs md:text-sm px-4 py-2">
@@ -22,8 +22,8 @@
 
         </div>
 
-
-        <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <!-- NAVBAR -->
+        <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between relative z-50">
 
             <!-- LEFT LINKS -->
             <div class="hidden md:flex items-center space-x-8 text-sm">
@@ -40,7 +40,7 @@
                                transition-all duration-300 z-50">
                         <div class="grid grid-cols-3 gap-8 p-8">
 
-                            <div class="space-y-4">
+                            <div class="space-y-4 flex flex-col">
                                 <p class="text-xs uppercase tracking-widest text-gray-500">
                                     Shop Jewellery
                                 </p>
@@ -51,7 +51,7 @@
                                 <router-link to="/jewellery/rings" class="mega-link">Rings</router-link>
                             </div>
 
-                            <div class="space-y-4">
+                            <div class="space-y-4 flex flex-col">
                                 <p class="text-xs uppercase tracking-widest text-gray-500">
                                     Featured
                                 </p>
@@ -83,18 +83,18 @@
                                transition-all duration-300 z-50">
                         <div class="grid grid-cols-3 gap-8 p-8">
 
-                            <div class="space-y-4">
+                            <div class="space-y-4 flex flex-col">
                                 <p class="text-xs uppercase tracking-widest text-gray-500">
-                                    Scents
+                                    Shop Scents
                                 </p>
 
                                 <router-link to="/scents/perfumes" class="mega-link">Perfumes</router-link>
+                                <router-link to="/scents/candles" class="mega-link">Lotions</router-link>
                                 <router-link to="/scents/body-mists" class="mega-link">Body Mists</router-link>
                                 <router-link to="/scents/oils" class="mega-link">Fragrance Oils</router-link>
-                                <router-link to="/scents/candles" class="mega-link">Candles</router-link>
                             </div>
 
-                            <div class="space-y-4">
+                            <div class="space-y-4 flex flex-col">
                                 <p class="text-xs uppercase tracking-widest text-gray-500">
                                     Collections
                                 </p>
@@ -124,10 +124,17 @@
             </router-link>
 
             <!-- RIGHT ICONS -->
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-6 relative">
 
-                <button class="hidden md:block hover:opacity-70 transition">
+                <!-- DESKTOP SEARCH BUTTON -->
+                <button @click="showSearch = !showSearch" class="hidden md:block hover:opacity-70 transition">
                     <img class="w-4" src="/public/Images/magnifying-glass.png" />
+                </button>
+
+                <!-- MOBILE SEARCH BUTTON -->
+                <button @click="showSearch = !showSearch" class="md:hidden text-xl">
+                    <img class="w-4" src="/public/Images/magnifying-glass.png" />
+
                 </button>
 
                 <router-link to="/account" class="hover:opacity-70 transition">
@@ -141,12 +148,21 @@
                     </span>
                 </router-link>
 
-                <!-- MOBILE BUTTON -->
+                <!-- MOBILE MENU BUTTON -->
                 <button @click="open = !open" class="md:hidden text-xl">
                     ☰
                 </button>
             </div>
         </nav>
+
+        <!-- SEARCH BAR BELOW NAV -->
+        <transition name="slide-fade">
+    <div v-if="showSearch" ref="searchRef"
+         class="w-full bg-gray-50 border-t border-gray-200 px-6 py-4 md:px-12 absolute top-full flex justify-center left-0 z-40">
+        <input type="text" placeholder="Search products..."
+               class="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-black" />
+    </div>
+</transition>
 
         <!-- MOBILE MENU -->
         <transition enter-active-class="transition-all duration-300 ease-out"
@@ -173,10 +189,10 @@
                     <div class="space-y-3">
                         <p class="text-xs uppercase tracking-widest text-gray-500">Scents</p>
                         <router-link to="/scents/perfumes" @click="open = false" class="block">Perfumes</router-link>
+                        <router-link to="/scents/lotions" @click="open = false" class="block">Lotions</router-link>
                         <router-link to="/scents/body-mists" @click="open = false" class="block">Body
                             Mists</router-link>
                         <router-link to="/scents/oils" @click="open = false" class="block">Fragrance Oils</router-link>
-                        <router-link to="/scents/candles" @click="open = false" class="block">Candles</router-link>
                     </div>
 
                     <router-link to="/about" @click="open = false" class="block font-medium">
@@ -200,12 +216,15 @@ import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const open = ref(false)
+const showSearch = ref(false)
 const route = useRoute()
+const searchRef = ref(null)
 
 watch(
     () => route.fullPath,
     () => {
         open.value = false
+        showSearch.value = false
     }
 )
 
@@ -223,10 +242,12 @@ onMounted(() => {
         currentMessage.value =
             (currentMessage.value + 1) % messages.length
     }, 3000)
+    
 })
 </script>
 
 <style scoped>
+/* MESSAGE BAR FADE */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -235,5 +256,34 @@ onMounted(() => {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
+}
+
+/* SEARCH BAR SLIDE */
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.2s ease-in;
+}
+
+.slide-fade-enter-from {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.slide-fade-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-fade-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 </style>

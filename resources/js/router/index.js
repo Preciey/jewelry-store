@@ -53,6 +53,11 @@ const routes = [
         name: "contact",
         component: ContactUs
     },
+      {
+        path: "/about",
+        name: "about",
+        component: AboutUs
+    },
 ];
 
 const router = createRouter({
